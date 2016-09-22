@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'welcome/home'
 
+  resources :listings do 
+    resources :reservations, only: [:create,:new,:show]
+  end   
+  resources :reservations , only: [:show, :index,:update,:edit,:destroy]
+  
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -19,6 +23,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#home'
 
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  resources :users, only: [:show, :edit, :update, :destroy] 
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

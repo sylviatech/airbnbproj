@@ -1,2 +1,7 @@
-<h1>Welcome to PairBnb 🤔</h1>
-<p>Find me in app/views/welcome/home.html.erb</p>
+<h1>Welcome to AirBnb ✈️</h1>
+
+<p>Welcome, <%= current_user.firstname %></p>
+<%= image_tag current_user.avatar_url(:full) %>
+
+<%= link_to "Become a host", new_listing_path(@listing), class: "btb btn-warning" %>
+<%= link_to "Book your holiday", listings_path, class: "btb btn-warning" %>

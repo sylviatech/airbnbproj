@@ -1,0 +1,19 @@
+<div class="container">
+	<h1>All listings!</h1>
+		<table>
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+			</tr>
+			<% @listings.each do |listing| %>
+				<tr>
+					<td><%= link_to listing.title, listing %></td>
+					<td><%= listing.content[0..50] + "..." %></td>
+
+				</tr>
+				<% end %>
+
+		</table>
+
+
+</div>

@@ -1,0 +1,21 @@
+
+<div class="container">
+	<h1>Your reservation</h1>
+		<table>
+			<tr>
+				<th>Check in date</th>
+				<th>Check out date</th>
+			</tr>
+				<tr>
+					<td><%= @reservation.check_in_date %></td>
+					<td><%= @reservation.check_out_date %></td>
+					<td><%= @reservation.guest %></td>
+				</tr>
+
+
+	<%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-warning" %>
+	<%= link_to "Delete", reservation_path(@reservation), method: 'delete', data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+
+		</table>
+</div>
