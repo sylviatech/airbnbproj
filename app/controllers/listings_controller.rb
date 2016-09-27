@@ -60,7 +60,7 @@ class ListingsController < ApplicationController
   def search
     if params[:search][:name] != ""
       @listings = Listing.search(params[:search][:name])
-    # byebug
+
     #   listings = Listing.search(params[:search][:name])
     #     listings.each do |listing|
     #     puts listing

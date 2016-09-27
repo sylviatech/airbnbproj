@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
       redirect_to reservations_path, notice: "Congratulations! Your transaction has been successfully made!"
     else
       flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
-     byebug
+
       gon.client_token = generate_client_token
       render :new
     end
