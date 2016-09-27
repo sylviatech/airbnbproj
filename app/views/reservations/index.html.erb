@@ -1,0 +1,16 @@
+<div class="container">
+	<h1>All of your reservation</h1>
+
+
+			<% @reservations.each do |reservation| %>
+				<tr>
+					<p><%= image_tag reservation.listing.avatar[0].url(:full) %></p>
+					<td><%= reservation.listing.title %></td>
+					<td><%= reservation.listing.content[0..80] + "..." %></td>
+					<td><%= reservation.listing.guest %></td>
+					<td><%= reservation.listing.price %></td>
+					<hr>
+				</tr>
+			<% end %>
+
+</div>

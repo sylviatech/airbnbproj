@@ -4,6 +4,6 @@ class Reservation < ActiveRecord::Base
 		validates_presence_of :guest
 
 		belongs_to :user
-		belongs_to :listing, dependent: :destroy
+		belongs_to :listing
 
 end

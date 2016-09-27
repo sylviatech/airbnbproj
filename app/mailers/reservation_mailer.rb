@@ -1,7 +1,6 @@
 class ReservationMailer < ApplicationMailer
 
 	def reservation_email(user_id)
-
 		@user = User.find(user_id)
 
 		mail(to: @user.email,
@@ -11,8 +10,8 @@ class ReservationMailer < ApplicationMailer
 		end
 	end
 
-	def new_booking(user_id)
-		# @customer = User.
+	def new_booking(customer_id, user_id)
+		@customer = User.find(customer_id)
 		@host = User.find(user_id)
 
 		mail(to: @host.email,

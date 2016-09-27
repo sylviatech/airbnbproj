@@ -1,11 +1,13 @@
 class ReservationsController < ApplicationController
+
   def index
     @reservations = Reservation.all
   end
 
   def show
-    # @listing = Listing.find(params[:listing_id])
+    gon.client_token = generate_client_token
     @reservation = Reservation.find(params[:id])
+    @listing = @reservation.listing
   end
 
   def new
@@ -22,8 +24,9 @@ class ReservationsController < ApplicationController
       if @reservation.save
       flash[:success] = "Your holiday is now booked! Get your bags ready!👏"
       # ReservationMailer.reservation_email(@reservation.user).deliver_now
-      ReservationMailer.reservation_email(@reservation.user.id).deliver_later
-      ReservationMailer.new_booking(@listing.user.id).deliver_now
+      customer_id = @reservation.user.id
+      ReservationMailer.reservation_email(customer_id).deliver_later
+      ReservationMailer.new_booking(customer_id, @listing.user.id).deliver_later
 
       redirect_to @reservation
     else
@@ -50,6 +53,11 @@ class ReservationsController < ApplicationController
   end
 
   private
+
+  def generate_client_token
+    Braintree::ClientToken.generate
+  end
+
   def reservation_params
     params.require(:reservation).permit(:check_in_date, :check_out_date, :user_id, :listing_id, :guest)
   end

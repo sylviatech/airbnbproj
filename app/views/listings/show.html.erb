@@ -1,5 +1,6 @@
 <div class="container">
 
+<p>Maximum Guest: <% @listing %> </p>
 
 	<% @listing.avatar.each do |pic| %>
 		<p><%= image_tag pic.url(:full) %></p>
@@ -9,6 +10,7 @@
 	<p><%= @listing.title %></p>
 	<p><%= @listing.content %></p>
 	<p>Maximum Guest: <%= @listing.guest %></p>
+	<p>Price: <%= @listing.price %></p>
 	<p><strong>Posted by: <%= @listing.user.firstname %></p>
 
 	<%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-warning" %>

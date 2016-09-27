@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transactions/new'
+
   resources :listings do 
     resources :reservations, only: [:create,:new,:show]
   end   
@@ -17,11 +19,15 @@ Rails.application.routes.draw do
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
+  get "/search" => "listings#search", as: "search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#home'
+
+  #braintree
+  resources :transactions, only: [:new, :create]
 
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   resources :users, only: [:show, :edit, :update, :destroy] 
@@ -53,6 +59,7 @@ Rails.application.routes.draw do
   #     resource :seller
   #   end
 
+get 'tags/:tag', to: 'listings#index', as: :tag
   # Example resource route with more complex sub-resources:
   #   resources :products do
   #     resources :comments
@@ -74,4 +81,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

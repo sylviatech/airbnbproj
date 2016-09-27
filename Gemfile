@@ -42,6 +42,17 @@ gem "clearance"
 
 gem 'sidekiq'
 
+#filter
+gem 'acts-as-taggable-on', '~> 4.0'
+
+#for payment
+gem "braintree"
+gem 'gon'
+
+#elastic search
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'searchkick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -18,6 +18,12 @@
 			  <%= f.label :guest %>:
 			  <%= f.text_area :guest, class: 'form-control' %>
 
+				<%= f.label :tag_list %>:
+			  <%= f.text_area :tag_list, input_html: { value: @listing.tag_list.to_s } %>
+
+			  <%= f.label :price %>:
+			  <%= f.text_area :price, class: 'form-control' %>
+
 		  <%= f.submit "List", class: 'btn-btn-warning' %>
 
 	  <% end %>

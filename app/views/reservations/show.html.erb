@@ -1,6 +1,6 @@
 
 <div class="container">
-	<h1>Your reservation</h1>
+	<h1>Your reservation cart</h1>
 		<table>
 			<tr>
 				<th>Check in date</th>
@@ -10,12 +10,22 @@
 					<td><%= @reservation.check_in_date %></td>
 					<td><%= @reservation.check_out_date %></td>
 					<td><%= @reservation.guest %></td>
-				</tr>
-
-
-	<%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-warning" %>
-	<%= link_to "Delete", reservation_path(@reservation), method: 'delete', data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-
-
+			</tr>
 		</table>
+
+		<%= link_to "Edit", edit_reservation_path(@reservation), class: "btn btn-warning" %>
+		<%= link_to "Delete", reservation_path(@reservation), method: 'delete', data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+		<br>
+		<br>
+
+		<div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
+		  <h2 class="mbs">New Transaction</h2>
+		  <%= form_tag transactions_path do%>
+		    <p>Please enter your payment details:</p>
+		    <div id="dropin"></div>
+		    <%= hidden_field_tag(:reservation_id, @reservation.id) %>
+		    <%= submit_tag "Pay #{@listing.price}$", class: "button mt1" %>
+		  <%end%>
+		</div>
+
 </div>
