@@ -67,3 +67,8 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+	gem 'rails_12factor' #Heroku Gem support
+	gem 'puma' #Using puma for
+end
+
