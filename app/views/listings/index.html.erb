@@ -1,0 +1,38 @@
+<div class="container">
+	<div id="tag_cloud">
+			<p>Filters:</p>
+			<% tag_cloud Listing.tag_counts, %w[s, m, l] do |tag, css_class| %>
+			<%= link_to tag.name, tag_path(tag.name), class: css_class %>
+			<% end %>
+	</div>
+<br>
+<br>
+	<h1>All listings!</h1>
+		<table>
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Maximum Guest</th>
+				<th>Price</th>
+			</tr>
+
+			<% @listings.each do |listing| %>
+				<tr>
+					<td><%= link_to listing.title, listing %></td>
+					<td><%= listing.content[0..80] + "..." %></td>
+					<td><%= listing.guest %></td>
+					<td><%= listing.price %></td>
+				</tr>
+
+				<% end %>
+		</table>
+
+<br>
+<br>
+ 	<div>
+	    <% (1..@total_pages).each do |page| %>
+	        <%= link_to page, controller: "listings", action: "index", page: page %>&nbsp;
+	    <% end %>
+	</div>
+
+</div>

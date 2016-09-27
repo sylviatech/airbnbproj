@@ -1,0 +1,38 @@
+<div class="container">
+
+<p>Maximum Guest: <% @listing %> </p>
+
+	<% @listing.avatar.each do |pic| %>
+		<p><%= image_tag pic.url(:full) %></p>
+	<% end %>
+
+	<h1><%= @listing.title%></h1>
+	<p><%= @listing.title %></p>
+	<p><%= @listing.content %></p>
+	<p>Maximum Guest: <%= @listing.guest %></p>
+	<p>Price: <%= @listing.price %></p>
+	<p><strong>Posted by: <%= @listing.user.firstname %></p>
+
+	<%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-warning" %>
+
+	<%= link_to "Delete", @listing, method: 'delete', confirm: "Are you sure?", class: "btn btn-danger" %>
+
+	<h3>Book your holiday ⛩</h3>
+
+	<%= form_for([@listing,@reservation]) do |f| %>
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+
+		  <%= f.label :check_in_date %>
+			<%= f.date_field :check_in_date, type: 'date' %>
+
+			<%= f.label :check_out_date %>
+			<%= f.date_field :check_out_date, type: 'date' %>
+
+		  <%= f.label :guest %>:
+		  <%= f.text_field :guest, class: 'form-control' %>
+
+	  <%= f.submit "Book", class: 'btn btn-warning' %>
+  <% end %>
+
+</div>
+
